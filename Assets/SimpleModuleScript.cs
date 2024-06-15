@@ -348,15 +348,15 @@ public class SimpleModuleScript : MonoBehaviour {
 				if (!position.ContainsKey(parameters[1])) yield return "sendtochaterror Button position does not exist!";
 				else if ((!moved && parameters[1] != "M") || !Buttons[position[parameters[1]]].gameObject.GetComponent<KMSelectable>().Highlight.gameObject.activeSelf) 
 					yield return "sendtochaterror Button not activated!";
-				else Buttons[position[parameters[1]]].OnInteract(); yield return null;
+				else yield return null; Buttons[position[parameters[1]]].OnInteract();
 			}
         }
 		else yield return "sendtochaterror Invalid parameter!";
 	}
 	IEnumerator TwitchHandleForcedSolve()
 	{
-		module.HandlePass();
+        yield return null;
+        module.HandlePass();
 		TL(); BL(); BR(); M();
-		yield return null;
 	}
 }
